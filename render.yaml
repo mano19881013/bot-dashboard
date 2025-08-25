@@ -1,6 +1,6 @@
 # render.yaml
 services:
-  # 服務一：網頁控制面板 (Web UI)
+  # Service 1: The Web Control Panel
   - type: web
     name: bot-dashboard
     env: python
@@ -14,12 +14,8 @@ services:
         generateValue: true
       - key: FLASK_SECRET_KEY
         generateValue: true
-    disk:
-      name: bot-data
-      mountPath: /var/data/render
-      sizeGB: 1
 
-  # 服務二：Discord Bot (背景程式)
+  # Service 2: The Discord Bot Worker
   - type: worker
     name: bot-worker
     env: python
@@ -29,6 +25,3 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.4
-    disk:
-      name: bot-data
-      mountPath: /var/data/render
